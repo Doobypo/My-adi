@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnation Bouquet</title>
+  <style>
+    body {
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;   /* Center vertically */
+      height: 100vh;
+      overflow: hidden;
+    }
+    .bouquet {
+      position: relative;
+      display: flex;
+      gap: -20px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .carnation {
+      position: relative;
+      width: 180px;
+      height: 400px;  /* Extended to include stems */
+      animation: bloom 1.5s ease-out forwards;
+    }
+
+    /* Petals */
+    .petal {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 150px;
+      height: 150px;
+      background: #ff5c8d;
+      border-radius: 50%;
+      transform: translate(-50%, 0) scale(0);
+      clip-path: polygon(
+        50% 0%, 65% 10%, 80% 5%, 90% 20%, 100% 35%, 
+        95% 50%, 100% 65%, 90% 80%, 75% 90%, 60% 95%, 
+        50% 100%, 40% 95%, 25% 90%, 10% 80%, 0% 65%, 
+        5% 50%, 0% 35%, 10% 20%, 20% 5%, 35% 10%
+      );
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      animation: sway 4s ease-in-out infinite alternate;
+    }
+    .petal:nth-child(1) { background: #ff6f91; animation-delay: 0.2s; }
+    .petal:nth-child(2) { background: #ff4f7c; animation-delay: 0.3s; transform: translate(-50%, 0) rotate(15deg); }
+    .petal:nth-child(3) { background: #ff3b6d; animation-delay: 0.4s; transform: translate(-50%, 0) rotate(-10deg); }
+    .petal:nth-child(4) { background: #e7315f; animation-delay: 0.5s; transform: translate(-50%, 0) rotate(5deg); }
+
+    /* Flower center */
+    .center {
+      position: absolute;
+      top: 55px;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      background: #c2185b;
+      border-radius: 50%;
+      transform: translate(-50%, 0);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+      animation: swayCenter 5s ease-in-out infinite alternate;
+    }
+
+    /* Stem */
+    .stem {
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      width: 14px;
+      height: 250px;
+      background: #2ecc71;
+      border-radius: 10px;
+      transform: translateX(-50%);
+      animation: swayStem 4s ease-in-out infinite alternate;
+    }
+
+    /* Leaves */
+    .leaf {
+      position: absolute;
+      width: 80px;
+      height: 35px;
+      background: #27ae60;
+      border-radius: 50%;
+    }
+    .leaf.left {
+      top: 200px;
+      left: 80px;
+      transform: rotate(-30deg);
+    }
+    .leaf.right {
+      top: 230px;
+      left: 30px;
+      transform: rotate(30deg);
+    }
+
+    /* Animations */
+    @keyframes sway {
+      0% { transform: translate(-50%, 0) scale(1) rotate(0deg); }
+      100% { transform: translate(-50%, 0) scale(1.02) rotate(2deg); }
+    }
+    @keyframes swayCenter {
+      0% { transform: translate(-50%, 0) scale(1); }
+      100% { transform: translate(-50%, 0) scale(1.05); }
+    }
+    @keyframes swayStem {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(1deg); }
+    }
+    @keyframes bloom {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    /* Slight variation for each flower */
+    .carnation:nth-child(1) { transform: scale(0.9) rotate(-5deg); }
+    .carnation:nth-child(2) { transform: scale(1.1) rotate(3deg); }
+    .carnation:nth-child(3) { transform: scale(1) rotate(-2deg); }
+  </style>
+</head>
+<body>
+  <div class="bouquet">
+    <div class="carnation">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+    </div>
+    <div class="carnation">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+    </div>
+    <div class="carnation">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+    </div>
+  </div>
+</body>
+</html>
+
+
