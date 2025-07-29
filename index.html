@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Letter Puzzle</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #ffe6e6;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    #puzzle {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 10px;
+    }
+    .letter {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border: 2px solid #d6336c;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: grab;
+      user-select: none;
+    }
+    .letter:active {
+      cursor: grabbing;
+    }
+    #message {
+      margin-top: 40px;
+      font-size: 22px;
+      color: #333;
+      font-weight: bold;
+      display: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background: #d6336c;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #b12c59;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Love Letter Puzzle 💌</h1>
+  <p>Rearrange the letters to reveal my secret message!</p>
+  <div id="puzzle"></div>
+  <button onclick="checkAnswer()">Check Answer</button>
+  <div id="message"></div>
+
+  <script>
+    const correctWord = "ILOVEYOU";
+    let letters = correctWord.split("").sort(() => 0.5 - Math.random());
+
+    function createPuzzle() {
+      const puzzle = document.getElementById("puzzle");
+      puzzle.innerHTML = "";
+      letters.forEach((letter, index) => {
+        const div = document.createElement("div");
+        div.className = "letter";
+        div.textContent = letter;
+        div.draggable = true;
+        div.dataset.index = index;
+        div.addEventListener("dragstart", dragStart);
+        div.addEventListener("dragover", dragOver);
+        div.addEventListener("drop", drop);
+        puzzle.appendChild(div);
+      });
+    }
+
+    let draggedIndex;
+
+    function dragStart(e) {
+      draggedIndex = +e.target.dataset.index;
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      const targetIndex = +e.target.dataset.index;
+      [letters[draggedIndex], letters[targetIndex]] = [letters[targetIndex], letters[draggedIndex]];
+      createPuzzle();
+    }
+
+    function checkAnswer() {
+      if (letters.join("") === correctWord) {
+        // Redirect to next page if solved
+        window.location.href = "page2.html"; 
+      } else {
+        document.getElementById("message").textContent = "Not yet! Try again 😉";
+        document.getElementById("message").style.display = "block";
+      }
+    }
+
+    createPuzzle();
+  </script>
+
+</body>
+</html>
